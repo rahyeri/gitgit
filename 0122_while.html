@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연산자에 대해서 알아봅시다 </title>
+</head>
+<body>
+    <script>
+        'use strict';
+        //예제문제
+        //break continue 
+        //0~10까지 중에 짝수만 출력 use continue 
+        let k=1; 
+        for(k=1; k<=10; k++){
+            if(k%2==0){
+                console.log(k);
+                continue;
+        }
+    }
+    //8까지만 출력
+    for(k=1; k<=10; k++){
+        if(k>8){
+            console.log('stop');
+            break;
+        }
+        console.log(k);
+    }
+
+
+    </script>
+</body>
+</html>
