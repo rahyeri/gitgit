@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class 와 object </title>
+</head>
+<body>
+    
+
+ <script>
+     'use strict'
+
+     //class : template / no data  >> object : data in 
+
+     //1. class declarations
+
+     class Person{
+         //constructor
+
+         constructor(name, age){
+             //fields
+             this.name = name;
+             this.age = age;    
+         }
+         //methods
+         speak(){
+             console.log(`${this.name}:hello!`);
+         }
+     }
+
+     const hyeri = new Person('hyeri', 20); //클래스 사람을 이용해서 혜리라는 사람을 선언
+     
+     console.log(hyeri.name);
+     console.log(hyeri.age);
+
+     //getter and setter 
+     //class 커피밴딩머신  메소드 >>동전넣기 / 커피만들기   
+     //커피숫자 >> property -1 값이 되면 안되니까 setter를 만들어서 제한 /캡슐화는 다른사람이 숫자값의 제한을 설정하지 못하도록 private하게 설정
+
+     class User{
+         constructor(firstName, lastName, age){
+             this.firstName = firstName;
+             this.lastName = lastName;
+             this.age = age;
+         }
+
+         get age(){
+             return this._age;
+         }
+
+         set age(value){
+            //if (value <0){
+            //throw Error('age can not be negative');}
+             
+             this._age = value < 0 ? 0 : value;
+         }
+     }  
+
+     const user1 = new User('Steve', 'Job', -1); //스티브잡스라는 유저를 만들때 age가 -1이 될 수 없는데 잘못 설정
+     console.log(user1); //age가 getter와 setter 설정으로 0으로 출력됨 
+
+
+     //static을 붙이면 class명을 붙여서 호출 >> 메모리 사용을 줄여준다 
+
+     //상속과 다양성 
+
+     class Shape{
+         constructor(width, height, color){
+             this.width = width;
+             this.height = height;
+             this.color = color;
+         }
+         draw(){
+             console.log(`drawing ${this.color} color of`);
+         }
+
+         getArea(){
+            console.log('multiply');
+             return this.width * this.height;
+             
+         }
+     }
+     class Rectangle extends Shape {
+        getArea(){
+            super.getArea(); //부모의 속성도 상속가능 
+            return (this.width * this.height)/2; //함수 재정의도 가능 
+         }
+
+     } //extends를 사용하여 shape의 필드와 메소드를 상속받음 
+
+     const rectangle = new Rectangle(20,20,'blue');
+     rectangle.draw();
+     console.log(rectangle.getArea());
+ </script>
+</body>
+</html>
