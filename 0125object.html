@@ -15,12 +15,13 @@
      //object없이 따로따로 
      const name = 'hyeri';
      const age = 4 ; 
-     function print(name,age){
+     function print(name,age){ //이름과 나이를 각각 파라미터로 넣어야함 
          console.log(name);
          console.log(age);
      }
-     print(name,age);
-     //object를 만들었을때 
+     print(name,age); //출력에도 이름과 나이를 각각 파라미터로 넣어야해서 인자가 길어지게 되면 관리가 힘들어요
+     //object를 만들었을때
+
      const ra = {
          name: 'rahyeri',
          age : 33
@@ -30,49 +31,58 @@
          console.log(person.age);
      }
      print1(ra);
-     //object는 { key :value } 의 집합체이다 
-     //위의 경우 이름 : 혜리  나이 : 33 
 
 
      //object만드는 방법
      const ob1 = {}; //object literal
      const ob2 = new Object(); //클래스로부터 constructor syntax
 
-     //계산된 properties 
+     //object는 { key :value } 의 집합체이다 
+     //위의 경우 이름 : 혜리  나이 : 33 
+     //키를 추가할수도 있고 삭제할 수도 있으나 좋지 않다
 
-     console.log(ra['name']); //runtime에서 어떤 key를 받을지 모를때 (사용자에게 input을 받아야나올때)
+     /*2*/
+     //계산된 properties 
+     
+     console.log(ra['name']); //ra.name과 똑같이 value를 받아오는 것인데 어떤경우에 쓸가 ?? runtime에서 어떤 key를 받을지 모를때 (사용자에게 input을 받아야나올때)
+    //['key']를 적을때는 항상 문자열로      
      ra['hasJob'] = true;
      console.log(ra.hasJob);
-
+//['key']를 적을때는 항상 문자열로 
      function printValue(obj, key){
          console.log(obj[key]); 
      }
      printValue(ra, 'age'); //사용자 input이라고 가정 코딩하는 시점에 함수에 key라고 적으면 input key가 적용되어 나온다 
-     /**/
 
+
+     /*3*/
+     //property value shorthand
      const person1 = {name : 'bob', age : 2};
      const person2 = {name : 'bobbob', age : 3};
      const person3 = {name : 'jobjob', age : 4};
      //사람을 계속 만들기 지친다 //함수를 만들자 ! 
      const person4 = new Person('ellie' , 30);
      console.log(person4);
-     //constructor function 
-     function Person(name, age){ //사람이라는  동일한 구조의 오브젝트를 만드는 함수 
-        //this = {}; this를 사용해서 만듭니다
+     //constructor function  /*4*/
+     function Person(name, age){ //값만 전달해주면 사람이라는  동일한 구조의 오브젝트를 만드는 함수 
+     //오브젝트를 만드는 함수는 대문자로 시작하도록 이름을 붙임 
+        //this = {}; 새로운 오브젝트를 만들거야~ 
          this.name = name;
          this.age = age;
          //return this;
      }
 
-     //5. in operator 
+     /*5*/
+     //5. in operator : property existence check
 
      console.log('name' in person1);
      //in이라는 키워드를 이용해서 해당하는 key가 object 안에 있는지 확인할 수 있음 있으면 =true
 
-     console.clear();
+
+
      //6. for..in vs for..of for (key in obj)
      
-     for(key in person1){
+     for(key in ra){
          console.log(key);     
         }
 
@@ -86,6 +96,34 @@
      /*주의 use strict를 쓰면 for in과 for of에서 
      key와 value가 선언되지 않았다고 오류가 떰 */
      
+     /*7*/
+     //Fun Cloning 
+     const user = {name : 'ellie' , age : '20'};
+     const user2 = user;
+     user2.name = 'coder';//user2 > user => ellie >coder
+     console.log(user); 
+     
+     //old way user오브젝트를 복사하는 예전방법
+     const user3 = {};
+     for (key in user){
+         user3[key] = user[key];
+     }
+
+     //new way
+     const user4 = Object.assign({},user);
+     console.log(user4);
+
+     //another example
+     //assign은 복제하면서 mixed도 가능 
+     const fruit1 = {color : 'red'};
+     const fruit2 = {color : 'blue', size : 'big'};
+     const mixed = Object.assign({}, fruit1, fruit2);
+     console.log(mixed.color); 
+     //동일한 property가 있다면 뒤에있는 오브젝트 property가 앞에있는 것을 덮어씌운다  
+    
+     
+
+
  </script>
 </body>
 </html>
