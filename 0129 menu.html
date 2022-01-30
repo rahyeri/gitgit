@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>메뉴만들기</title>
+        <link href="./css/menu.css" rel="stylesheet" type="text/css">
+        <style>
+
+        </style>
+    <body>
+        <main>
+            <section>
+                <h2>하나은행 인기상품</h2>
+                <ul>
+                    <li class="is_on">
+                        <a href="#tab1" title="menu1">예금</a>
+                        <ul class="sub" id="tab1">
+                            <li>1<a href="#" title="1"></a></li>
+                            <li>2<a href="#" title="2"></a></li>
+                            <li>3<a href="#" title="3"></a></li>
+                            <li>4<a href="#" title="4"></a></li>
+                            
+                        </ul>             
+                            
+                    </li>
+                    <li><a href="#tab2" title="menu2">적금</a>
+                        <ul class="sub" id="tab2">
+                            <li>1<a href="#" title="1"></a></li>
+                            <li>2<a href="#" title="2"></a></li>
+                            <li>3<a href="#" title="3"></a></li>
+                            <li>4<a href="#" title="4"></a></li>
+                            <li>5<a href="#" title="5"></a></li>
+                        </ul>             
+                            
+                </li>
+                    <li><a href="#tab3" title="menu3">펀드</a>
+                        <ul class="sub fund" id="tab3">
+                            <li>1<a href="#" title="1"></a></li>
+                            <li>2<a href="#" title="2"></a></li>
+                            <li>3<a href="#" title="3"></a></li>
+                            <li>4<a href="#" title="4"></a></li>
+                            <li>5<a href="#" title="5"></a></li>
+                            <li>6<a href="#" title="6"></a></li>
+                        </ul>             
+                                                </li>
+                    <li><a href="#" title="menu4">연금/IRP</a>
+                        <ul class="sub irp">
+                            <li>1<a href="#" title="1"></a></li>
+                            <li>2<a href="#" title="2"></a></li>
+                            <li>3<a href="#" title="3"></a></li>
+                        </ul>             
+                            
+                </li>
+                    <li><a href="#" title="menu5">대출</a>
+                        <ul class="sub money">
+                            <li><a href="#" title="1">프리미엄 직장인론 <span class="small">최대</span>
+                                <span class="big">1억5천만원까지</span>
+                            </a>
+                            </li>
+                            <li><a href="#" title="2">
+                                프리미엄 직장인론 <span class="small">최대</span>
+                                <span class="big">1억5천만원까지</span>
+                            </a></li>
+                            <li><a href="#" title="3">
+                                프리미엄 직장인론 <span class="small">최대</span>
+                                <span class="big">1억5천만원까지</span>
+                            </a></li>
+                            <li><a href="#" title="4">
+                                프리미엄 직장인론 <span class="small">최대</span>
+                                <span class="big">1억5천만원까지</span>
+                            </a></li>
+                            <li><a href="#" title="5">
+                                프리미엄 직장인론 <span class="small">최대</span>
+                                <span class="big">1억5천만원까지</span>
+                            </a></li>
+                        </ul>             
+                            
+                </li>
+                    <li><a href="#" title="menu6">신탁</a>
+                        <ul class="sub sintak">
+                            <li><a href="#" title="1">가족배려신탁</a></li>
+                            <li><a href="#" title="2">하나 Living trust</a></li>
+                            <li><a href="#" title="3">부동산관리/처분신탁</a></li>
+                        </ul>             
+                            
+                </li>
+                    <li><a href="#" title="menu7">외화</a>
+                        <ul class="sub exchange">
+                            <li><a href="#" title="1">하나 밀리언달러 통장<span>제휴증권사를 통한 해외주식거래와 환테크를 동시에 할 수 있는 외화다통화예금</span></a></li>
+                            <li><a href="#" title="2">하나 밀리언달러 통장<span>제휴증권사를 통한 해외주식거래와 환테크를 동시에 할 수 있는 외화다통화예금</span></a></li>
+                            <li><a href="#" title="3">하나 밀리언달러 통장<span>제휴증권사를 통한 해외주식거래와 환테크를 동시에 할 수 있는 외화다통화예금</span></a></li>
+                            <li><a href="#" title="4">하나 밀리언달러 통장<span>제휴증권사를 통한 해외주식거래와 환테크를 동시에 할 수 있는 외화다통화예금</span></a></li>
+                            <li><a href="#" title="5">하나 밀리언달러 통장<span>제휴증권사를 통한 해외주식거래와 환테크를 동시에 할 수 있는 외화다통화예금</span></a></li>
+                        </ul>             
+                            
+                </li> 
+                </ul>
+                
+            </section>
+        </main>
+        <script>
+            const tabList = document.querySelectorAll('section > ul >li');
+            //li가 배열형태가 된다 
+            for (let i =0; i< tabList.length; i++ ){ //tabList.length는 0~6<7 까지니까 7개 
+                tabList[i].querySelector('section > ul > li > a').addEventListener('click',
+                function(e){//for문을 이용해서 각 li의 a(버튼)에다가 클릭 이벤트를 걸어주는데 
+                    e.preventDefault();//a 태그 클릭시 herf로 인한 화면이동을 막아준다(return false같은거)
+                    for(let j =0; j<tabList.length; j++){
+                        tabList[j].classList.remove('is_on'); //모든 li에 is_on을 먼저 제거
+                    }
+                    this.parentNode.classList.add('is_on');//this(클릭한) //버튼의 함수 안이니까 부모요소(li)에다가 class is_on을 준다
+                });
+            }
+
+
+
+        </script>
+
+    </body>
+    </head>
+</html>

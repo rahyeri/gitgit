@@ -1,0 +1,238 @@
+@charset "utf-8";
+
+/* 초기화 */
+*{
+    margin:0px; padding:0px;
+}
+ul,li{
+    list-style:none;
+}
+a{
+    text-decoration:none;
+    color:#333;
+}
+/*  */
+
+section{
+    /* background-color:#ffff00; */
+    height:800px;
+}
+section > h2{
+    text-align:center;
+}
+section > ul{
+    margin:0px auto;
+    width:880px;
+    height:400px;
+    background-color:#ffff00;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+}
+section > ul > li > a{
+    display:block;
+    width:80px;
+    text-align:center;
+    height:55px;
+    line-height:55px;
+}
+
+/* 클릭시 라인 */
+section > ul > li > a{
+    position:relative;
+}
+
+section > ul > li > a::after{
+    content:"";
+    width:3px;
+    height:55px;
+    background-color:#222;
+    position:absolute;
+    right:0px;
+    top:0px;
+    display:none;
+}
+/*칸마다 다른색상*/
+section > ul > li:first-child > a::after{
+    background-color:red;
+}
+section > ul > li:nth-child(2) > a::after{
+    background-color:rgb(255, 94, 0);
+}
+section > ul > li:nth-child(3) > a::after{
+    background-color:green;
+}
+section > ul > li:nth-child(4) > a::after{
+    background-color:blue;
+}
+section > ul > li:nth-child(5) > a::after{
+    background-color:pink;
+}
+section > ul > li:nth-child(6) > a::after{
+    background-color:purple;
+}
+section > ul > li:last-child > a::after{
+    background-color:navy;
+}
+section > ul > li .sub{
+    background-color:green;
+    position:absolute;
+    height:400px;
+    right:0;
+    top:0;
+    width:800px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-template-rows:1fr 1fr;
+    display:none;
+
+}
+/* li 클래스가 is on이면 .sub가 보임 & 클릭하는 a 효과 */
+
+section > ul > li.is_on > a{
+    font-weight:bold;
+}
+section > ul > li.is_on > a::after{
+    display:block;
+}
+section > ul > li.is_on .sub{
+    display:grid;
+}
+/*  */
+section > ul > li .sub > li{
+    background-color:aliceblue;
+    }
+.sub > li:first-child { 
+    grid-area:1/1/3/3;
+}   
+.sub > li a{
+    display:block;
+    width:100%;
+    height:100%;
+}
+.sub > li{
+    box-sizing:border-box;
+    padding:10px;
+}
+.sub > li > a{
+    font-size:1rem;
+    font-weight:bold;
+    color:#fff;
+    line-height:2;
+}
+.sub > li > a > span{
+    font-size:0.8rem;
+    display:block;
+    line-height:1.5;
+}
+.sub > li:first-child{
+    background-color:rgb(212, 232, 238);
+    box-sizing:border-box;
+    padding:20px;
+}
+.sub > li:first-child a{
+    font-size:1.5rem;
+}
+.sub > li:first-child a,.sub > li:nth-child(2) a{
+    color:#222;
+}
+.sub > li:nth-child(2){
+    background-color:rgb(246, 249, 250);
+}
+
+.sub > li:nth-child(3){
+    background-color:rgb(223, 6, 223);
+}
+
+.sub > li:nth-child(4){
+    background-color:rgb(35, 92, 109);
+}
+
+.sub > li:last-child{
+    background-color:rgb(49, 178, 218);
+}
+/* 펀드 */
+section > ul > li:nth-child(3) .sub{
+    grid-template-columns:repeat(3, 1fr);
+    grid-template-rows:1fr 1fr;
+}
+
+section > ul > li:nth-child(3) .sub > li:first-child { 
+    grid-area:1/1/1/1;
+}
+/*irp*/
+section > ul > li:nth-child(4) .sub > li:nth-child(2) {
+    grid-area:1/3/2/5; 
+}
+section > ul > li:nth-child(4) .sub > li:nth-child(3) {
+    grid-area:2/3/3/5; 
+}
+/* 대출 */
+.sub.money > li > a{
+    position:relative;
+}
+.sub.money > li span{
+    position:absolute;
+    bottom:10px;
+}
+.sub.money >li > a span.small{
+    font-size:0.4rem;
+    bottom:40px;
+}
+.sub.money >li > a span.big{
+    font-size:1.2rem;
+}
+/* 신탁 */
+section > ul > li:nth-child(6) .sub{
+    grid-template-columns:repeat(3, 1fr);
+    grid-template-rows:1fr;
+}
+
+section > ul > li:nth-child(6) .sub > li:first-child { 
+    grid-area:1/1/1/1;
+}
+.sintak > li:first-child{
+    background-color:rgb(175, 204, 214);
+}
+.sintak > li:nth-child(2){
+    background-color:rgb(246, 249, 250);
+}
+.sintak > li:last-child{
+    background-color:rgb(35, 92, 109);
+}
+.sub.sintak > li:first-child a,.sub.sintak > li:nth-child(2) a{
+    color:#222;
+}
+
+/* 외화 */
+.sub.exchange > li:first-child{
+    background-color:rgb(212, 232, 238);
+    box-sizing:border-box;
+    padding:20px;
+}
+.sub.exchange > li:first-child a{
+    font-size:1.5rem;
+}
+.sub.exchange > li:first-child a,.sub.exchange > li:nth-child(2) a{
+    color:#222;
+}
+.sub.exchange > li:first-child span,.sub.exchange > li:nth-child(2) span{
+    color:rgb(122, 121, 121);
+}
+.sub.exchange > li:nth-child(2){
+    background-color:rgb(246, 249, 250);
+}
+
+.sub.exchange > li:nth-child(3){
+    background-color:rgb(223, 6, 223);
+}
+
+.sub.exchange > li:nth-child(4){
+    background-color:rgb(35, 92, 109);
+}
+
+.sub.exchange > li:last-child{
+    background-color:rgb(49, 178, 218);
+}
+  /*  */
