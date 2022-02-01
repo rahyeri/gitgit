@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <script>
+        'use strict'
+
+        //Promise is object for asynchronous operation 
+        //state : 상태 : operation이 수행중일때 pending상태 ->완료 fulfilled 실패 rejected 
+        //Producer vs Consumer
+
+        //1. producer
+        const promise = new Promise((resolve, reject) => {
+            //doing some hheavy work
+            console.log('doing something');
+            setTimeout(() => {
+                //resolve('ellie'); //작업이 잘 실행되었을 때 수행하는 콜백함수 
+                reject(new Error('no network'));
+            },1000);
+        });
+        //프로미스를 만드는 순간 executor가 실행되므로 네트워크요청을 사용자가 버튼을 눌러서
+        //요청할때만 하는 경우라면 사용자가 요구하지도 않았는데 불필요한 전달이 발생할 수 있다.
+        //when new Promise is created, the executor runs automatically 
+        
+        
+        //2. Consumer - then, catch, finally
+
+        promise
+        .then((value) => {
+            console.log(value);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        .finally(() => {
+            console.log('final');
+        });
+        
+        //3. Promise chaining
+        const fetchNumber = new Promise((resolve, reject) => {
+            setTimeout(() => resolve(1), 1000);
+        });
+        
+        fetchNumber
+        .then(num => num*2)
+        .then(num => num*3)
+        .then(num => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => resolve(num - 1), 1000);
+            });
+        })
+        .then(num => console.log(num));
+
+
+
+        //4. Error
+
+        const getHen = () =>
+        new Promise((resolve, reject) => {
+            setTimeout(()=> resolve('chi'), 1000);
+        });
+        const getEgg = hen =>
+        new Promise((resolve, reject) => {
+            setTimeout(() => reject( new Error(`error ${hen} => egg`),1000));
+        });
+        const cook = egg =>
+        new Promise((resolve, reject) => {
+            setTimeout(() => resolve(`${egg} => eggfry`),1000);
+        });
+
+
+        getHen()
+        .then(hen => getEgg(hen))
+        .catch(error => {
+            return 'bread';
+        })
+        .then(egg => cook(egg))
+        .then(meal => console.log(meal));
+        //코드를 깔끔하게 정리 
+        //콜백함수를 전달할때 받아오는 value를 바로 다른함수로 전달하는 경우에는 value생략이 가능
+        /*getHen()
+        .then(getEgg)
+        .then(cook)
+        .then(console.log);*/
+    </script>
+</body>
+</html>
