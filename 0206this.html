@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 this </title>
+</head>
+<body>
+    
+
+    <script>
+        //'use strict';
+
+        //1. 함수에서 디스를 사용 > 일반함수형태로 호출 this = object / window 가리킴 
+        let name = 'ken';
+        function foo () {
+            console.log(this.name); 
+        }
+        foo();//this === window가 되어서 window.name은 광역변수인 let name의 값 ken을 불러오게 됨
+
+        //use strict를 써서 엄격한 strict 모드에서는 this === undefined가 되어서 undefined의 properties를 읽어 올 수 없다는 오류가 남 > 디버깅이 쉽다 
+
+        //예제1
+        let age = 100;
+        function fool(){
+            var age = 99;
+            bar();
+        }
+        function bar () {
+            console.log(this.age);
+        }
+        bar();
+        fool(); //undefined다 //let을 쓰면 this를 정확하게 지정해주지 않는 경우 undefined가 됨 
+
+        //2. dot notation 사용 
+
+        function ra(){
+         console.log(this.age);   
+        }
+        let ken = {
+            age : 35,
+            foo : function foo (){
+                console.log(this.age);
+            }
+        };
+        ken.foo();
+        
+        let wan = {
+            age : 31,
+            foo : ra
+        };
+        wan.foo(); //foo = ra > ra의 this는 wan 
+        ra(); //닷 노테이션으로 연결되지 않았을 때는 호출 값이 undefined
+
+        let some ={
+            age : 30,
+            foo : ken.foo
+        };
+
+        ken.foo(); //이때 this는 ken 객체를 가리킴
+        some.foo(); //이때 this는 some 객체를 가리킴
+    
+
+        //예제 3 
+        //function.prototype.call, apply , bind
+        
+
+        let me = 100;
+
+        function hey () {
+            console.log(this.me);
+        }
+
+        let hyeri = {
+            me : 20
+        };
+
+        let rara = {
+            me : 30
+        };
+
+        hey ();
+
+        hey.call(hyeri); // this에 hyeri가 들어가게 됨 
+        hey.apply(rara); // this에 rara가 들어가게 됨
+
+        console.clear();
+        //예제
+        function hey (a,b,c,d,e){
+            console.log(this.me);
+            console.log(arguments);
+        }
+
+        hey.call(hyeri, 1,2,3,4,5);
+        hey.apply(rara, [1,2,3,4,5]); //apply는 인자를 두개만 받고 두번째 인자에는 무조건 배열이 들어가야함  
+        let bin = hey.bind(rara); //바인드는 call, apply처럼 바로 실행시키지 않고 변수에 담아서 bind함수를 리턴받고 값을실행>이 값은 this에 들어감 //값을 안 쓰면 this.me는 undefined로 나온다  
+        bin(10,20,30,40,50); 
+
+
+        //new 를 사용해보자 
+        function woo () {
+            
+            // new 키워드를 사용하면 자동으로 this = {}; 요런 상태가 되는 것 
+
+            this.name = '바닐라코딩';       
+             
+             //this가  { name : '바닐라코딩'} 값이 있는 오브젝트가 된다 
+
+            //리턴값도 return this; 적지 않더라도 자동으로 this 값이 리턴이 됨       
+             }
+        new woo(); //this 값이 {} 빈객체가 새로 생성된다 
+
+        let result = new woo ();
+
+        console.log(result);
+
+        //A function used width 'new'keyword :: constructor function (생성자함수) -대체로 앞에 대문자로 시작
+
+        function Person (a, b){
+            this.name = a;
+            this.age = b;
+        }   
+
+        //called instances 호출 
+
+        let keke = new Person('kim', 34); //클론 객체 생성 instance 
+        let kakao = new Person ('han', 30); 
+
+        console.log(keke);    
+        console.log(kakao);    
+        //예전에 클래스가 없을 때 오브젝트를 복제하는 방법이었음 
+        //클래스 
+        class Saram {
+            constructor(pa1, pa2){
+                this.name = pa1;
+                this.age = pa2;
+            }
+        }
+        let i = new Saram('김사람', 21); // 한줄 컷!! 
+        console.log(i);
+
+        
+        //사용하는 이유는 ??? 비슷한 유형의 정보를 담은 오브젝트를 복사해낼때 코드를 줄일 수 있기 때문 
+        //함수나 클래스를 사용하지 않을 경우 이렇게 길게 계속 적어줘야함 
+        /*let i = {
+            name = '김사람',
+            age = 21
+        };
+
+        */
+
+
+    </script>
+</body>
+</html>
