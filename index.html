@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #plus{
+            font-size:50px;
+        }
+        #plus img{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <h2>ajax</h2>
+
+    <ol id="nav">
+
+    </ol>
+
+    <input type="button" value="더보기" onclick="switchText('css.txt')">
+
+    
+    
+<article>
+    안녕하세요
+</article>
+<input type="button" value="fetch" onclick="
+        fetch('html.txt').then(() =>  console.log('response me'));
+">
+
+<article id="plus">
+</article>
+
+<script>
+    function switchText(name) {
+        fetch(name).then(function(response){
+        response.text().then(function(text){
+            document.querySelector('#plus').innerHTML = text;
+            //console.log(response);
+            //if(response.status === 200){ //200이면 잘 불러온 것 // 404는 못 찾은 것 
+                //alert('good');
+            // }
+        })
+    })
+    }//switchText(name)
+
+    if(location.hash){
+        switchText(location.hash.substr(2)+'.txt'); //ajax클릭했을때 hash뱅으로 출력 //주소를 차별화하기위해
+    }else{
+        switchText('welcome.txt'); //ajax 클릭을 안했을때 보여지는 페이지 
+    }
+
+    //#nav의 list를 데이터화하기 
+    fetch('list.txt').then(function(response){
+        response.text().then(function(text){
+            let items = text.split(',');
+            console.log(items);
+            var tags = '';
+            for(let i=0; i<items.length; i++){
+                var item = items[i];
+                var tag = `<li><a href="#!${item}" title="" onclick="switchText('${item}.txt')">${item}</a></li>`; //콘솔에서 세로로 한줄씩 나열되는데 item을 바로 출력하면 마지막줄인 javascript밖에 안 들어감 ;; 
+                tags = tags+ tag; //1,2,3번째 줄을 다 합쳐줘야함 
+                console.log(tags); // <li>html</li><li>css</li><li>javascript</li>
+            }
+            document.querySelector('#nav').innerHTML = tags; //출력 
+
+            
+            //document.querySelector('#nav').innerHTML = text;
+        })
+    })
+    /*<li><a href="#!html" title="" onclick="switchText('html.txt')">html</a></li>
+      <li><a href="#!css" title="" onclick="switchText'css.txt')">css</a></li>
+      <li><a href="" title="">java script</a></li>*/
+
+</script>
+</body>
+</html>
