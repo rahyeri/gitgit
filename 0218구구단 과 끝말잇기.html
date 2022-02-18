@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>구구단과 끝말잇기 ㅎㅎㅎㅎㅎ</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- <link href="./css/calc.css" rel="stylesheet" type="text/css"> -->
+    </head>
+    <body>
+        <form action="a.php" method="post" name="">
+            <fieldset>
+                <legend>끝말잇기 게임하기 </legend>
+                <p><label for="in1"></label><input type="text" id="in1" value="마동석" onkeyup="enterkey()"/></p>
+                <p><label for="in2"></label><input type="text" id="in2" value="" /></p>
+                <input type="button" value="submit" id="btn" />
+            </fieldset>        
+            <p id="result" style="display:none;"></p> 
+            <p id="game">가르마</p>
+        </form>
+
+        <script>
+
+            //숫자 * 1,2,3,4,5,6,7,8,9
+            let p= document.getElementById('result');
+            let b = "";
+
+            function numBer (nb){
+            for(let i=1; i<10; i++){
+                let a = 0;
+               a += nb*i; 
+               b += ` ${nb} * ${i} = ${a} <br>`;
+            }
+            p.innerHTML = b;
+         }
+
+
+        for(let j=1; j<10; j++){
+            numBer (j);
+         }
+           
+
+
+         //끝말잇기 게임 만들기 
+         
+         //텍스트박스에 값을 받는다 입력값은 하단에 계속 추가된다 
+         //전 입력값의 마지막 글자 === 새로운 입력값의 첫글자가 같을 때 prompt()실행 
+         //아니면 alert ('게임이 종료되었습니다')
+
+         let gameBox = document.getElementById('game');
+         let gameText = document.getElementById('in1');
+         let btn = document.getElementById('btn');
+
+         //btn.addEventListener('click', function (){
+            function enterkey() {
+	            if (window.event.keyCode == 13) {
+
+                let first =  gameText.value;
+                let firstRe =  gameText.value.slice(0,1);
+                let last = gameBox.innerText;
+                let lastRe = gameBox.innerText.slice(-1);
+
+                
+                console.log(firstRe);
+                console.log(lastRe);
+                if(firstRe === lastRe ){
+                    gameBox.insertAdjacentHTML('beforeend', '->' + gameText.value);
+                }else{
+                    alert('행복하세요~');
+                }
+
+                gameText.value =""; //값을 클리어 
+
+        }
+    }
+         
+        // let text = "Hello world!";
+        // let result = text.slice(0,1); 첫글자 구하기   마지막 글자 구하기let result = text.slice(-1);
+
+   
+        //  while(gameBox.innerText.length <1000) {
+        //     bobo();
+        //     }
+
+
+         
+
+                                    
+        </script>
+    </body>
+</html>

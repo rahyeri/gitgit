@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>가계부</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- <link href="./css/calc.css" rel="stylesheet" type="text/css"> -->
+    </head>
+    <body>
+        <form action="a.php" method="post" name="">
+            <fieldset>
+                <legend>급여폼</legend>
+                <p><label for="total">총급여</label><input type="text" id="total" value="1900000" /></p>
+                <p><label for="bus">교통비</label><input type="text" id="bus" value=""/></p>
+                <p><label for="phone">휴대폰+고정</label><input type="text" id="phone" value=""/></p>
+                <p><label for="insurance">보험+이자</label><input type="text" id="insurance" value=""/></p>
+                <p><label for="food">식비</label><input type="text" id="food" value=""/></p>
+                <input type="button" value="submit" id="btn" />
+            </fieldset>        
+            <p id="result">이번달사용가능금액</p>
+            <input type="month">
+        </form>
+
+        <script>
+            /*총급여-(커피값 + 교통비+식비) = 사용가능금액 
+
+            
+                coffee = document.getElementById('coffee'), //지출1 let 지출 = ['coffee', 'bus', 'food'] 
+                bus = document.getElementById('bus'),       //지출2
+                food = document.getElementById('food'), //document.getElementById('food').value라고 변수에 담으니까 안나옴 함수에서 요소.value라고 해야만 나온다  //지출3
+                btn = document.getElementById('btn'),   
+                
+
+                btn.addEventListener('click', () => {
+                    result.innerHTML = (Number(total.value) -( Number(coffee.value) + Number(bus.value) + Number(food.value) )) + '원 입니다';
+                });
+                */
+                                   const resultSum = document.getElementById('result');
+                                   const total = document.getElementById('total');
+                                
+                btn.addEventListener('click', () => { //모든 일은 버튼을 누르면 이뤄져야하므로 감싼다 
+
+                                    //foreach에서 나온 값들을 다시 배열로 바꾸는 법 
+                                   var arr1 = ['phone', 'bus', 'food', 'insurance']; // 지출리스트를 배열로 만듬 
+                                   const oddArray = []; //forEach의 출력값들을 다시 배열로 만들어서 합치기 위해 
+                                          arr1.forEach(function(x) {
+                                            oddArray.push(Number(document.getElementById(x).value));   //지출리스트의 value를 가져와서 숫자로 바꾼 값들을 하나하나 출력  > 빈배열에 push해서 배열로 변경                            
+                                         });
+                                             console.log(oddArray);   // forEach는 return이 없습니다. 즉, callback 함수에 의해서 어떤 결과물을 내놓고 싶으면 함수 밖의 변수를 사용해야합니다.
+                                                                                
+
+                                   //숫자 배열을 합치는 법 
+                                   
+                                    let result = oddArray.reduce(function add(sum, currValue) {
+                                                 return sum + currValue;
+                                    });
+                                    console.log(result);
+                                     // 결과값 출력
+                                    
+                                           resultSum.innerHTML = '저축이 가능한 금액은'+ (Number(total.value) - result) + '원 입니다';// 결과값 출력 
+                 }); 
+
+
+                                    
+                                      /* var b = a.split(' ').map(function(item) {
+                                    return parseInt(item, 10);
+                                });
+                                console.log(b);  숫자배열로 바꾸기 */ 
+
+                                          /*  function sum(...args) {
+                                                       return args.reduce((total, arg) => total + arg);  //total + ','+ arg로 구분가능 
+                                                           }
+                                                           let b = sum('1', '2');
+                                                  console.log(b);*/ //sum에다가 숫자 파라미터를 넣어서 합치는 법  
+
+
+
+                                               /*         const arr = [0,1,2,3,4,5,6,7,8,9,10];
+                                                            
+
+                                                            arr.forEach(function(element){
+                                                                if(element%2==1) {
+                                                                    oddArray.push(element);
+                                                                }
+                                                            });
+
+                                                            console.log(oddArray);*/
+
+
+
+
+
+
+                                    
+        </script>
+    </body>
+</html>
