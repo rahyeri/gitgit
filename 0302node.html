@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="start">
+    <ul>
+        <li><a href="./532">html</a></li> 
+        <li><a href="./533">css</a></li>
+        <li><a href="./534">JavaScript</a>
+            <ul>
+                <li><a href="./535">JavaScript Core</a></li>
+                <li><a href="./536">DOM</a></li>
+                <li><a href="./537">BOM</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+
+        //재귀함수 
+        function traverse(target, callback){
+    if(target.nodeType === 1){
+        //if(target.nodeName === 'A')
+        callback(target);
+        var c = target.childNodes;
+        for(var i=0; i<c.length; i++){
+            traverse(c[i], callback);       
+        }   
+    }
+}
+traverse(document.getElementById('start'), function(elem){
+    console.log(elem);
+});
+
+    //
+
+
+
+    var s = document.getElementById('start');
+    console.log(1, s.firstChild); // #text
+    var ul = s.firstChild.nextSibling
+    console.log(2, ul); // ul
+    console.log(3, ul.nextSibling); // #text
+    console.log(4, ul.nextSibling.nextSibling); // script
+    console.log(5, ul.childNodes); //text, li, text, li, text, li, text
+    console.log(6, ul.childNodes[1]); // li(html)
+    console.log(7, ul.parentNode); // body
+    </script>
+
+<!-- <ul id="target">
+    <li>HTML</li>
+    <li>CSS</li>
+</ul>
+<input type="button" onclick="callAppendChild();" value="appendChild()" />
+<input type="button" onclick="callInsertBefore();" value="insertBefore()" />
+<script>
+    function callAppendChild(){
+        var target = document.getElementById('target');
+        var li = document.createElement('li');
+        var text = document.createTextNode('JavaScript');
+        li.appendChild(text);
+        target.appendChild(li);
+    }
+ 
+    function callInsertBefore(){
+        var target = document.getElementById('target');
+        var li = document.createElement('li');
+        var text = document.createTextNode('jQuery');
+        li.appendChild(text);
+        target.insertBefore(li, target.firstChild);
+    }
+</script> -->
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <!-- <li id="target">JavaScript</li> -->
+</ul>
+<input type="button" onclick="callRemoveChild();" value="removeChild()" />
+<input type="button" onclick="callReplaceChild();" value="replaceChild()" />
+<input type="button" onclick="get();" value="get" />
+<input type="button" onclick="set();" value="set" />
+<script>
+    function get(){
+        var target = document.getElementById('target');
+        alert(target.innerText); //값을 읽어오기 
+    }
+    function set(){
+        var target = document.getElementById('target');
+        target.innerText = "<li>JavaScript Core</li><li>BOM</li><li>DOM</li>";
+    }
+    //대체
+    function callReplaceChild(){
+        var a = document.createElement('a'); //만들기 
+        a.setAttribute('href', 'http://opentutorials.org/module/904/6701'); //속성넣기
+        a.appendChild(document.createTextNode('Web browser JavaScript')); //글자넣기
+ 
+        var target = document.getElementById('target');
+        target.replaceChild(a,target.firstChild);
+    }
+    //제거 
+    function callRemoveChild(){
+        var target = document.getElementById('target');
+        target.parentNode.removeChild(target);
+    }
+</script>
+<ul>
+    <li id="target1">html</li> 
+    <li>css</li>
+    <li>pajama</li>
+</ul>
+<script>
+    var t = document.getElementById('target1').firstChild;
+    console.log(t.nodeValue);
+    console.log(t.data);
+</script>
+<style>
+    #target{
+        font-size:77px;
+        font-family: georgia;
+        border-bottom:1px solid black;
+        padding-bottom:10px;
+    }
+    p{
+        margin:5px;
+    }
+    </style>
+<p id="target">Cording everybody!</p>
+<p> data : <input type="text" id="datasource" value="JavaScript" /></p>
+<p>   start :<input type="text" id="start" value="5" /></p>
+<p> end : <input type="text" id="end" value="5" /></p>
+<p><input type="button" value="appendData(data)" onclick="callAppendData()" />
+<input type="button" value="deleteData(start,end)" onclick="callDeleteData()" />
+<input type="button" value="insertData(start,data)" onclick="callInsertData()" />
+<input type="button" value="replaceData(start,end,data)" onclick="callReplaceData()" />
+<input type="button" value="substringData(start,end)" onclick="callSubstringData()" /></p>
+<script>
+    var target = document.getElementById('target').firstChild;
+    var data = document.getElementById('datasource');
+    var start = document.getElementById('start');
+    var end = document.getElementById('end');
+    function callAppendData(){
+        target.appendData(data.value);
+    }
+    function callDeleteData(){
+        target.deleteData(start.value, end.value);
+    }
+    function callInsertData(){
+        target.insertData(start.value, data.value); 
+    }
+    function callReplaceData(){
+        target.replaceData(start.value, end.value, data.value);
+    }
+    function callSubstringData(){
+        alert(target.substringData(start.value, end.value));
+    }
+</script>
+
+
+
+</body>
+</html>

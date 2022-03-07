@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <pre>
+    내장객체(Built-in Object)
+
+- 자바스크립트 엔진에 내장된 객체
+
+- 필요한 경우 객체를 생성해서 사용
+
+- 문자(String), 날짜(Date), 배열(Array), 수학(Math), 정규 표현 객체(RegExp Object)
+
+
+
+내장 객체 생성
+
+new라는 키워드와 생성 함수 사용
+
+참조 변수(인스턴스 이름) = new 생성 함수();
+[날짜 정보 객체(Date Object)]
+
+- 날짜나 시간 관련 정보를 제공받고 싶을 때 생성
+
+참조변수 = new Date();
+var t = new Date();
+new Date() - > 오늘의 날짜 정보
+
+new Date("년/월/일");
+
+new Date(년,월-1,일);
+
+
+날짜 관련 메서드
+
+날짜 정보를 가져올 때 (GET)
+
+-연도 : getFullYear();
+
+-월 : getMonth();
+
+-일 : getDate();
+
+-요일 : getDay();
+
+-시간 : getHours();
+
+-분 : getMinutes();
+
+-초 :getSeconds();
+
+날짜.toString(), 날짜.toLocaleString(), 날짜.toUTCString()
+
+
+
+날짜 정보를 수정할 때 (SET)
+
+-연도 : setFullYear();
+
+-월 : setMonth();
+
+-일 : setDate();
+
+-요일 : 요일은 날짜를 바꾸면 자동으로 바뀌므로 없음
+
+-시간 : setHours();
+
+-분 : setMinutes();
+
+-초 :setSeconds();
+
+날짜.toString(), 날짜.toLocaleString(), 날짜.toUTCString()
+
+
+
+남은 일 수(밀리초) =  특정 날짜 객체 - 현재 날짜 객체
+
+
+
+
+[수학 객체(Math Object)]
+
+수학과 관련된 기능과 속성을 제공
+[출처] 13_자바스크립트 내장객체|작성자 수련원장
+
+</pre>
+<script>
+    let today = new Date ();
+
+    
+</script>
+</body>
+</html>

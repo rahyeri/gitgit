@@ -1,0 +1,52 @@
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+<html>
+    <head>
+        <style>
+            html{border:5px solid red;padding:30px;}
+            body{border:5px solid green;padding:30px;}
+            fieldset{border:5px solid blue;padding:30px;}
+            input{border:5px solid black;padding:30px;}
+        </style>
+    </head>
+    <body>
+        <fieldset>
+            <legend>event propagation</legend>
+            <input type="button" id="target" value="target">          
+        </fieldset>
+        <script>
+        function handler(event){
+            var phases = ['capturing', 'target', 'bubbling']
+            console.log(event.target.nodeName, this.nodeName, phases[event.eventPhase-1]);
+        }
+        document.getElementById('target').addEventListener('click', handler, true);
+        document.querySelector('fieldset').addEventListener('click', handler, true);
+        document.querySelector('body').addEventListener('click', handler, true);
+        document.querySelector('html').addEventListener('click', handler, true);
+        </script>
+    </body>
+</html>
