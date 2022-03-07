@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모든일이 점점 더 좋아지고 있다</title>
+</head>
+<body>
+    <h2>끝말잇기</h2>
+    <div>
+        <span id="order">1</span>번째 참가자
+    </div>
+    <div>제시어: <span id="word"></span></div>
+    <input type="text" id="txtBox">
+    <button>입력</button>
+    <button class="hello">입력2</button>
+    <button class="hello">입력3</button>
+    <p id="yes"></p>
+    <script>
+        const number = prompt('몇명이참가하나요?');
+        const realNumber = Number(number);
+        console.log('typeof number', typeof number); //prompt로 입력한 값은 string입니다 // 따라서 number로 변환하려면 Number()로 감싸줘야합니다 
+        console.log(typeof realNumber); //prompt로 입력한 값은 string입니다 // 따라서 number로 변환하려면 Number()로 감싸줘야합니다 
+
+        const $input = document.querySelector('input');
+        const $button = document.querySelector('button');
+        const $$button = document.querySelectorAll('button');
+        console.log($input);
+        console.log($button);
+        console.log($$button); //NodeList(3) [button, button, button] 이 출력 , 배열형태지만 nodelist라는 특수한 객체입니다 
+
+        const $order = document.querySelector('#order'); 
+        console.log($order); 
+        const hbutton = document.querySelectorAll('.hello');
+        console.log(hbutton);
+
+        //함수를 만들어 봅시다 
+
+        const onClickBtn = () => {
+            console.log('버튼클릭');
+        }
+        $button.addEventListener('click', onClickBtn); //onClickBtn은 콜백함수로 특정작업이 수행된 후 실행되는 함수
+
+        const onInput = (event) => {
+            console.log('글자입력', event.target.value); //인풋이라는 이벤트가 발생하면 이벤트가 발생하는 요소의 value값을 가져와서 콘솔에 찍는다
+        }
+         $input.addEventListener('input', onInput);
+
+
+    </script>
+</body>
+</html>
